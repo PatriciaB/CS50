@@ -1,0 +1,407 @@
+https://patriciab-code50-7284805-xqj59594652vjw6.github.dev/
+
+no terminal
+code nome_do_arquivo.py
+
+salvar o arquivo e depois, no terminal
+python nome_do_arquivo.py
+
+para colocar uma variavel: #
+ou """ no inicio e """ no final e tudo o que for digitado no meio é comentario
+
+docs.python.org
+
+
+digitar python, ira executar automaticamente
+
+
+
+def is short for define
+
+scope - uma variavel so existe no escopo onde é definida
+return = retornar um valor
+
+ls   	- listar arquivos de um diretorio
+cp   	- copiar cp hello.py goodbye.py
+mv   	- mover   mv farewell.py ..
+rm   	- remover
+mkdir	- criar um diretorio
+cd	- entrar em um diretorio   cd ..
+rmdir	- remover um diretorio
+clear 	- limpar o terminal
+
+
+>
+>=
+<
+<=
+== to compare
+!= diferent
+
+if (termina com :)
+elif
+else
+
+or
+and
++
+-
+*
+/
+% - modulo, para calcular a diferença, quanto sobra ao dividir
+match
+
+
+match name:
+    case "Harry" | "Herminone" | "Ron":
+        print("Gryffindor")
+    case "Draco":
+        print("Slytherin")
+    case _:                     #qualquer case
+        print("Who?")
+
+
+loops
+
+while
+ctrl c   = termina a execucao do loop
+x += 1      x = x+1
+
+for loop
+list   - another type of 
+dict 	- dicionarios, associar keys and values
+
+SyntaxError
+
+Error handling
+ValueError
+try
+except
+
+Exemplo 1:
+
+def main():
+    x = get_int()
+    print(f"x is {x}")              #outra forma de representar o print. nao esquecer f
+
+
+
+def get_int():
+    while True:                 #loop infinito até o break
+        try:
+            x = int(input("Digite x: "))
+        except ValueError:
+            print("x is not an integer")
+        else:
+            break
+    return x
+
+
+main()
+
+
+
+
+exemplo 2
+
+def main():
+    x = get_int("What's x? ")
+    print(f"x is {x}")              #outra forma de representar o print. nao esquecer f
+
+
+
+def get_int(prompt):
+    while True:                 #loop infinito até o break
+        try:
+            return int(input(prompt))           #it will break and return the value
+        except ValueError:
+            pass                #nao faz nada, continua o loop
+
+main()
+
+
+
+
+Debugging
+breakpoints - do lado esquerdo da linha 
+run and debug
+
+Library - modules
+random.py
+import
+random.choice(seq)
+
+from - key word
+
+random.randint(a,b)
+
+statisctics
+average     media
+statistics.mean([100, 90, 80])
+
+command-line arguments
+sys   -->>> sys.argv
+print("hello, my name is ", sys.argv[1])   - no prompt python name.py Patricia
+
+sys.exit
+slices 					subset of a lista
+
+packages
+
+pip install cowsay
+APIs -> requests
+pip install requests
+JSON
+
+if __name__ == "__main__"    - run by command line
+
+Style
+PEP 8
+peps.python.org/pep-0008/
+
+pylint - para verificar se existe algum erro de indentacao
+pycodestyle - 
+
+black - programm 
+pip install black - 
+black nome_do_arquivo.py          #digitar na linha de comando, vai formatar codigo
+
+
+unit tests
+assert - 
+Ex: assert square(3) == 9
+AssertionError
+    try:
+        assert square(-3) == 9
+    except AssertionError:
+        print("-3 squared was not 9")
+
+
+pytest
+pip install pytest
+pytest test_calculator2.py
+
+
+folder
+
+code test/__init__.py  Cria um pacote
+pytest test
+
+File I/O - save the 
+
+open - abrir um arquivo
+
+exemplo
+_________________
+
+name = input("What's your name? ")
+
+file = open("names.txt", "a")   #nome do arquivo, "w" significa escrever, "a" é alterar
+file.write(f"{name}\n")         #nova linha
+file.close()
+
+__________________
+
+ou, para nao precisar colocar a linha close()
+
+name = input("What's your name? ")
+
+with open("names.txt", "a") as file:   #nome do arquivo, "w" significa escrever, "a" é alterar
+    file.write(f"{name}\n")         #nova linha
+
+_______________________
+
+
+csv file é um arquivo que armazena varias info
+
+python costumes.py costume1.py costume2.py
+
+library of regular expression
+re
+. 
+*
++
+?
+{m}
+{m,n}
+
+^
+$  - termina
+[]
+[^] - nao pode ter aquele caracter
+
+[^@] - exceto o @
+
+
+OOP - orientado a objetos
+tuple = colecao de variaveis
+
+
+class
+
+class Student:    #nome da class, colocar com primeira maiuscula
+    ...
+
+def get_student():
+    student = Student()
+    student.name = input("Name: ")
+    student.house = input("House: ")
+    return student
+
+objects
+attributes
+instance variables
+methods				instance methods
+
+raise 				exceptions
+
+raise ValueError("Missing name")
+
+    try:
+        return Student(name, house)      #constructor
+    except Value:
+        ...
+
+
+__str__
+
+properties
+@property
+decorators
+
+
+
+para checar erros e evitar que uma variavel seja alterada. 
+    #getter
+    @property
+    def house(self):
+        return self._house
+
+    #setter
+    @house.setter
+    def house(self, house):
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid House")
+        self._house = house
+
+class methods
+
+
+inheritance
+
+operator overloading
+
+
+global variable
+
+
+def deposit(n):
+    global balance
+    balance += n
+
+quando for alterar uma variavel global, precisa dizer que é uma variavel global
+
+
+better
+
+______________
+class Account:
+    def __init__(self):
+        self._balance = 0
+
+    @property
+    def balance(self):
+        return self._balance
+
+
+    def deposit(self, n):
+        self._balance += n
+
+    def withdraw(self, n):
+        self._balance -= n
+
+def main():
+    account = Account()
+    print("Balance:", account.balance)
+    account.deposit(100)
+    account.withdraw(50)
+    print("Balance:", account.balance)
+
+
+if __name__ == "__main__":
+    main()
+_____________________
+
+
+
+
+constants
+cannot be changed
+
+type hints
+mypy
+pip install mypy
+
+
+mypy nome_arquivo.py
+: int   - para ajudar a achar o erro
+
+
+
+
+argparse
+to pass things using the command line
+python nome_programa.py -h                (help)
+
+
+
+
+
+_____________________
+import argparse
+
+parser = argparse.ArgumentParser(description="Meow like a cat")
+parser.add_argument("-n", default=1, help ="number of times to meow", type=int)
+args = parser.parse_args()
+
+
+for _ in range(args.n):
+    print("meow")
+
+_______________
+
+
+unpack
+
+
+*args, **kwargs
+
+
+
+map
+
+list comprehensions
+dictionary comprehensions
+
+enumerate
+
+students = ["Hermione", "Harry", "Ron"]
+for i in range(len(students)):
+    print(i+1, students[i])
+
+
+__________
+
+students = ["Hermione", "Harry", "Ron"]
+
+for i, student in enumerate(students):
+    print(i+1, student)
+
+
+generators
+yield  #return one value at time
+iterators
+
+Ctrl c para encerrar uma execucao
+
+Functions, Variable
